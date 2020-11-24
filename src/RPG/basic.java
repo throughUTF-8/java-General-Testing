@@ -284,36 +284,36 @@ public class basic {
 			
 			//Level up text prompts
 			public void levelUpInitial() {
-				System.out.println("Your hero has leveled up and earned two skill points!  Please select the first characteristic to level up in!");
-				System.out.println("Health(H): " + getMaxHealth() + "-->" + (getMaxHealth() + 20) );
-				System.out.println("Strength(S): " + getStrength() + "-->" + (getStrength()*.2) );
-				System.out.println("Defense(D): " + getDefense() + "-->" + (getDefense()*.2) );
-				System.out.println("Agility(A): " + getAgility() + "-->" + (getAgility()*.2) );
+				System.out.println("\nYour hero has leveled up and earned two skill points!  Please select the first characteristic to level up in!");
+				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*1.2) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*1.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*1.2) );
 			}
 			//Second level up, to be sent after first has been selected
 			public void levelUpAfterStrengthSelected() {
-				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("\nPlease select the second characteristic to level up in!");
 				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
-				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*.2) );
-				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*.2) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*1.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*1.2) );
 			}
 			public void levelUpAfterDefenseSelected() {
-				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("\nPlease select the second characteristic to level up in!");
 				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
-				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*.2) );
-				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*.2) );
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*1.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*1.2) );
 			}
 			public void levelUpAfterAgilitySelected() {
-				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("\nPlease select the second characteristic to level up in!");
 				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
-				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*.2) );
-				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*.2) );
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*1.2) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*1.2) );
 			}
 			public void levelUpAfterMaxHealthSelected() {
-				System.out.println("Please select the second characteristic to level up in!");
-				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*.2) );
-				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*.2) );
-				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*.2) );
+				System.out.println("\nPlease select the second characteristic to level up in!");
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*1.2) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*1.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*1.2) );
 			}
 			
 			//Level up stat increases
@@ -383,15 +383,15 @@ public class basic {
         }
         if( (command.toLowerCase()).equals("w") || (command.toLowerCase()).equals("warrior") ) {
         	System.out.println( "\nYou have selected warrior!  Please name you character!" );
-        	hero1 = new Character( 45, 35, 25 );
+        	hero1 = new Character( 55, 45, 30 );
         	command = in.nextLine();
         } else if( (command.toLowerCase()).equals("p") || (command.toLowerCase()).equals("paladin") ) {
         	System.out.println( "\nYou have selected paladin!  Please name you character!" );
-        	hero1 = new Character( 35, 50, 20 );
+        	hero1 = new Character( 45, 60, 25 );
         	command = in.nextLine();
         } else {
         	System.out.println( "\nYou have selected assassin!  Please name you character!" );
-        	hero1 = new Character( 40, 20, 45 );
+        	hero1 = new Character( 50, 30, 50 );
         	command = in.nextLine();
         }
         
@@ -487,6 +487,94 @@ public class basic {
             
             hero1.levelUpInitial();
             command = in.nextLine();
+            int i = 0;
+	        while( i == 0 ) {
+            	if( (command.toLowerCase()).equals("h") || (command.toLowerCase()).equals("health") ) {
+	            	hero1.levelMaxHealth();
+	            	hero1.levelUpAfterMaxHealthSelected();
+	            	i = 1;
+	            	command = in.nextLine();
+	            	while( i == 1 ) {
+	            		if( (command.toLowerCase()).equals("s") || (command.toLowerCase()).equals("strength") ) {
+	            			hero1.levelStrength();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("d") || (command.toLowerCase()).equals("defense") ) {
+	            			hero1.levelDefense();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("a") || (command.toLowerCase()).equals("agility") ) {
+	            			hero1.levelAgility();
+	            			i = 2;
+	            		} else {
+	            			System.out.println("Please respond with a valid input! ('S', 'D', or 'A')");
+	    	            	command = in.nextLine();
+	            		}
+	            	}
+	            } else if( (command.toLowerCase()).equals("s") || (command.toLowerCase()).equals("strength") ) {
+	            	hero1.levelStrength();
+	            	hero1.levelUpAfterStrengthSelected();
+	            	i = 1;
+	            	command = in.nextLine();
+	            	while( i == 1 ) {
+	            		if( (command.toLowerCase()).equals("h") || (command.toLowerCase()).equals("health") ) {
+	            			hero1.levelMaxHealth();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("d") || (command.toLowerCase()).equals("defense") ) {
+	            			hero1.levelDefense();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("a") || (command.toLowerCase()).equals("agility") ) {
+	            			hero1.levelAgility();
+	            			i = 2;
+	            		} else {
+	            			System.out.println("Please respond with a valid input! ('H', 'D', or 'A')");
+	    	            	command = in.nextLine();
+	            		}
+	            	}
+	            } else if( (command.toLowerCase()).equals("d") || (command.toLowerCase()).equals("defense") ) {
+	            	hero1.levelDefense();
+	            	hero1.levelUpAfterDefenseSelected();
+	            	i = 1;
+	            	command = in.nextLine();
+	            	while( i == 1 ) {
+	            		if( (command.toLowerCase()).equals("s") || (command.toLowerCase()).equals("strength") ) {
+	            			hero1.levelStrength();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("h") || (command.toLowerCase()).equals("health") ) {
+	            			hero1.levelMaxHealth();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("a") || (command.toLowerCase()).equals("agility") ) {
+	            			hero1.levelAgility();
+	            			i = 2;
+	            		} else {
+	            			System.out.println("Please respond with a valid input! ('H', 'S', or 'A')");
+	    	            	command = in.nextLine();
+	            		}
+	            	}
+	            } else if( (command.toLowerCase()).equals("a") || (command.toLowerCase()).equals("agility") ) {
+	            	hero1.levelAgility();
+	            	hero1.levelUpAfterAgilitySelected();
+	            	i = 1;
+	            	command = in.nextLine();
+	            	while( i == 1 ) {
+	            		if( (command.toLowerCase()).equals("s") || (command.toLowerCase()).equals("strength") ) {
+	            			hero1.levelStrength();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("d") || (command.toLowerCase()).equals("defense") ) {
+	            			hero1.levelDefense();
+	            			i = 2;
+	            		} else if( (command.toLowerCase()).equals("h") || (command.toLowerCase()).equals("health") ) {
+	            			hero1.levelMaxHealth();
+	            			i = 2;
+	            		} else {
+	            			System.out.println("Please respond with a valid input! ('H', 'S', or 'D')");
+	    	            	command = in.nextLine();
+	            		}
+	            	}
+	            } else {
+	            	System.out.println("Please respond with a valid input! ('H', 'S', 'D', or 'A')");
+	            	command = in.nextLine();
+	            }
+	        }
+
             
         	
         } else if( command.equals("2") ) {
