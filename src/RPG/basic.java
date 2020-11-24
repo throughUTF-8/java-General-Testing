@@ -2,6 +2,9 @@ package RPG;
 
 import java.util.Scanner;
 public class basic {
+	
+	
+	
 	public static void main( String args[] ) {
 		
 		class Enemy{
@@ -18,7 +21,8 @@ public class basic {
 			}
 			
 			//Calculations for attack sequence.  outputs: ( damage done, dodged?, damage received, dodged? )
-			public double[] attack( double myStrength, double myDefense, double myAgility,  double eStrength, double eDefense, double eAgility ) {
+			public double[] attack( double myStrength, double myDefense, double myAgility,
+									double eStrength, double eDefense, double eAgility ) {
 				double[] damage = new double[6];
 				damage = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 				
@@ -75,7 +79,7 @@ public class basic {
 			
 			//Tests whether the enemy is dead
 			public boolean deadTest() {
-				if( myHealth <= 0 ) {
+				if( getHealth() <= 0 ) {
 					return true;
 				} else {
 					return false;
@@ -278,19 +282,57 @@ public class basic {
 				return myMaxHealth;
 			}
 			
-			//Levels up character statistics
+			//Level up text prompts
+			public void levelUpInitial() {
+				System.out.println("Your hero has leveled up and earned two skill points!  Please select the first characteristic to level up in!");
+				System.out.println("Health(H): " + getMaxHealth() + "-->" + (getMaxHealth() + 20) );
+				System.out.println("Strength(S): " + getStrength() + "-->" + (getStrength()*.2) );
+				System.out.println("Defense(D): " + getDefense() + "-->" + (getDefense()*.2) );
+				System.out.println("Agility(A): " + getAgility() + "-->" + (getAgility()*.2) );
+			}
+			//Second level up, to be sent after first has been selected
+			public void levelUpAfterStrengthSelected() {
+				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*.2) );
+			}
+			public void levelUpAfterDefenseSelected() {
+				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*.2) );
+			}
+			public void levelUpAfterAgilitySelected() {
+				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("Health(H): " + getMaxHealth() + " --> " + (getMaxHealth() + 20) );
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*.2) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*.2) );
+			}
+			public void levelUpAfterMaxHealthSelected() {
+				System.out.println("Please select the second characteristic to level up in!");
+				System.out.println("Strength(S): " + getStrength() + " --> " + (getStrength()*.2) );
+				System.out.println("Defense(D): " + getDefense() + " --> " + (getDefense()*.2) );
+				System.out.println("Agility(A): " + getAgility() + " --> " + (getAgility()*.2) );
+			}
+			
+			//Level up stat increases
 			public void levelMaxHealth() {
 				myMaxHealth += 20;
-				myHealth = myMaxHealth;
+				myHealth = getMaxHealth();
+				System.out.println("You're hero's health has been increased to " + getMaxHealth() + " hit points!");
 			}
 			public void levelStrength() {
-				myStrength += (int)(.2*myStrength);
+				myStrength += (int)(.2*getStrength());
+				System.out.println("You're hero's strength has been increased to " + getStrength() + "!");
 			}
 			public void levelDefense() {
-				myDefense += (int)(.2*myDefense);
+				myDefense += (int)(.2*getDefense());
+				System.out.println("You're hero's defense has been increased to " + getDefense() + "!");
 			}
 			public void levelAgility() {
-				myAgility += (int)(.2*myAgility);
+				myAgility += (int)(.2*getAgility());
+				System.out.println("You're hero's agility has been increased to " + getAgility() + "!");
 			}
 			
 			public void setHealth( double n ) {
@@ -318,7 +360,6 @@ public class basic {
 				}
 			}
 		}
-		
 		
 		Character hero1;
 		
@@ -444,6 +485,8 @@ public class basic {
                 e.printStackTrace();
             }
             
+            hero1.levelUpInitial();
+            command = in.nextLine();
             
         	
         } else if( command.equals("2") ) {
